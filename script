@@ -1,8 +1,9 @@
 #!/bin/bash
-var2="0"
-while [ $var2 -eq "0" ]; do
+var2=0
+while [[ $var2 =0 ]] || [[ $var2 = 'null' ]]; do
 var=$(./bitcointool -c genkey)
 var2=$(curl https://insight.bitpay.com/api/addr/$var 2>/dev/null |jq  '.totalReceived')
 echo $var
 echo $var2
+sleep 0.2
 done
